@@ -7,17 +7,25 @@ from tqdm import tqdm
 tinify.key = "P8mMyqmnH3Nd6BV8KWR2Z8YC8DHwxk6Q"
 
 
-# Function to optimize PNG using Pillow
+def main():
+
+    # Provide the starting directory
+    starting_directory = "H:\\Meu Drive\\02 - MATERIAIS\\070_CCP_MCOM_SP\\mcom_blitz_telefonia_v1"
+
+    # Running the tinify function
+    tinify_pngs_in_directory(starting_directory)
+
+
 def optimize_png(image_path):
+    # Function to optimize PNG using Pillow
     with Image.open(image_path) as img:
         # Convert image to 'RGBA' (if it isn't already) and optimize
         img = img.convert("RGBA")
         img.save(image_path, format="PNG", optimize=True, quality=85)
 
-# Function to optimize all PNGs in a directory using Pillow with size check
-
 
 def optimize_pngs_in_directory(directory, size_threshold_kb=100):
+    # Function to optimize all PNGs in a directory using Pillow with size check
     optimized_count = 0
     all_png_files = []
 
@@ -36,17 +44,15 @@ def optimize_pngs_in_directory(directory, size_threshold_kb=100):
 
     print(f"\nTotal optimized PNG files: {optimized_count}")
 
-# Function to tinify PNG using tinify API
-
 
 def tinify_png(image_path):
+    # Function to tinify PNG using tinify API
     source = tinify.from_file(image_path)
     source.to_file(image_path)
 
-# Function to tinify all PNGs in a directory with size check
-
 
 def tinify_pngs_in_directory(directory, size_threshold_kb=100):
+    # Function to tinify all PNGs in a directory with size check
     tinified_count = 0
     all_png_files = []
 
@@ -66,8 +72,5 @@ def tinify_pngs_in_directory(directory, size_threshold_kb=100):
     print(f"\nTotal tinified PNG files: {tinified_count}")
 
 
-# Provide the starting directory
-starting_directory = "H:\\Meu Drive\\02 - MATERIAIS\\062_PROPEG_SECOM_CONHECA_O_BRASIL\\pacotes completos"
-
-# Running the tinify function
-tinify_pngs_in_directory(starting_directory)
+if __name__ == "__main__":
+    main()
