@@ -1,13 +1,17 @@
 import os
-from PIL import Image
 import tinify
+
+from PIL import Image
 from tqdm import tqdm
 
-
-tinify.key = "P8mMyqmnH3Nd6BV8KWR2Z8YC8DHwxk6Q"
+from dotenv import load_dotenv
+load_dotenv()
 
 
 def main():
+
+    # Load Tinify API key from enviroment
+    tinify.key = os.getenv("TINIFY_KEY")
 
     # Provide the starting directory
     starting_directory = "H:\\Meu Drive\\02 - MATERIAIS\\070_CCP_MCOM_SP\\mcom_blitz_telefonia_v1"
