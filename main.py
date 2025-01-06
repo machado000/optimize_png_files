@@ -8,16 +8,16 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-def main():
+def main() -> None:
 
     # Load Tinify API key from enviroment
     tinify.key = os.getenv("TINIFY_KEY")
 
     # Provide the starting directory
-    starting_directory = "H:\\Meu Drive\\02 - MATERIAIS\\070_CCP_MCOM_SP\\mcom_blitz_telefonia_v1"
+    starting_directory = "H:\\Meu Drive\\02 - MATERIAIS\\068_NOVA_SECOM_BALANÇO\\secom_balanco_linha_3"
 
     # Running the tinify function
-    tinify_pngs_in_directory(starting_directory)
+    tinify_pngs_in_directory(starting_directory, size_threshold_kb=50)
 
 
 def optimize_png(image_path):
@@ -70,6 +70,8 @@ def tinify_pngs_in_directory(directory, size_threshold_kb=100):
 
     # Iterating with tqdm progress bar
     for file_path in tqdm(all_png_files, desc="Tinifying PNGs", unit="file"):
+        file_size = os.stat(file_path).st_size
+        print(f"Optimizing file '{file_path}' - {file_size}")
         tinify_png(file_path)
         tinified_count += 1
 
