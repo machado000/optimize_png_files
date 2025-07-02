@@ -1,4 +1,7 @@
-Pillow
 python-dotenv
+selenium
+imageio
+Pillow
+pygifsicle
 tinify
 tqdm
